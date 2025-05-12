@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-const CollegeForm = () => {
+const TeacherForm = () => {
   const [formData, setFormData] = useState({
     idNumber: '',
     firstName: '',
     middleInitial: '',
     lastName: '',
-    program: '',
-    yearLevel: '',
+    department: '',
   });
 
   const navigate = useNavigate();
@@ -25,7 +23,7 @@ const CollegeForm = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch('http://localhost:5000/api/participants/college', {
+      const res = await fetch('http://localhost:5000/api/participants/teacher', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -56,23 +54,21 @@ const CollegeForm = () => {
         <input type="text" name="firstName" placeholder="First Name" onChange={handleChange} required />
         <input type="text" name="middleInitial" placeholder="Middle Initial" onChange={handleChange} required />
         <input type="text" name="lastName" placeholder="Last Name" onChange={handleChange} required />
-
-        <select name="program" div className= "forms" value={formData.program} onChange={handleChange} required>
-          <option value="">Select Program</option>
-          <option value="BSN">BSN</option>
-          <option value="BSIT">BSIT</option>
-          <option value="BSED">BSED</option>
-          <option value="BEED">BEED</option>
-          <option value="BSTM">BSTM</option>
-          <option value="BSCRIM">BSCRIM</option>
-          <option value="BSCA">BSCA</option>
-        </select>
-
-        <input type="text" name="yearLevel" placeholder="Year Level (e.g., 1, 2, 3)" onChange={handleChange} required />
+        <select name="department" div className="forms" value={formData.department} onChange={handleChange} required>
+     <option value="">Select Department</option>
+      <option value="CON">CON</option>
+      <option value="CCS">CCS</option>
+      <option value="CCJE">CCJE</option>
+      <option value="CTE">CTE</option>
+      <option value="TOURISM">TOURISM</option>
+      <option value="CUSTOMS">CUSTOMS</option>
+      </select>
         <button type="submit">Register</button>
+
+       
       </form>
     </div>
   );
 };
 
-export default CollegeForm;
+export default TeacherForm;

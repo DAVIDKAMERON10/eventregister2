@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SHSForm = () => {
   const [formData, setFormData] = useState({
@@ -8,7 +9,7 @@ const SHSForm = () => {
     lastName: '',
   });
 
-  const [qrCode, setQrCode] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,8 +32,13 @@ const SHSForm = () => {
       const data = await res.json();
 
       if (res.ok) {
-        setQrCode(data.qrCode);
-        alert('SHS student registered successfully!');
+        // Redirect to confirmation page with participant data + QR
+        navigate('/confirmation', {
+          state: {
+            ...formData,
+            qrCode: data.qrCode,
+          },
+        });
       } else {
         alert('Error: ' + data.error);
       }
@@ -48,14 +54,26 @@ const SHSForm = () => {
       <input type="text" name="firstName" placeholder="First Name" onChange={handleChange} required />
       <input type="text" name="middleInitial" placeholder="Middle Initial" onChange={handleChange} required />
       <input type="text" name="lastName" placeholder="Last Name" onChange={handleChange} required />
+
+      <select name="strand" div className="forms" value={formData.strand} onChange={handleChange} required>
+          <option value="">Select Strand</option>
+          <option value="ABM">ABM</option>
+          <option value="STEM">STEM</option>
+          <option value="GAS">GAS</option>
+          <option value="HUMSS">HUMSS</option>
+          </select>
+
+
+      <select name="year" div className="forms" value={formData.year} onChange={handleChange} required>
+     <option value="">Select Year</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+      </select>
+   
+
       <button type="submit">Register</button>
 
-      {qrCode && (
-        <div style={{ marginTop: '20px' }}>
-          <h4>Your QR Code:</h4>
-          <img src={qrCode} alt="QR Code" />
-        </div>
-      )}
+    
     </form>
     </div>
   );

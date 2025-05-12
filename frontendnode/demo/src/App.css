@@ -6,10 +6,10 @@ body {
 }
 
 .container {
-  max-width: 600px;
-  margin: 50px auto;
-  padding: 40px;
-  background-color: #ecdddd;
+  max-width: 400px; /* Reduced from 600px */
+  margin: 20px auto; /* Reduced top margin from 50px */
+  padding: 20px; /* Reduced from 40px */
+  background-color: #e97e7e;
   border-radius: 12px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
@@ -18,20 +18,22 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh; /* Changed from height to min-height */
+  padding: 20px; /* Added padding for mobile */
 }
 
 .registration-container {
   text-align: center;
-  margin-left: 1100px;
-  padding: 30px;
+  margin-left: 480px; /* Removed the large left margin */
+  padding: 15px;
   background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 420px;
+  width: 100%; /* Changed from 90% */
+  max-width: 350px; /* Reduced from 420px */
 }
 
+/* Other styles remain the same */
 .category-select {
   padding: 10px;
   margin-top: 10px;
@@ -40,13 +42,32 @@ body {
   border-radius: 6px;
   border: 1px solid #ccc;
 }
-
+.forms{
+  padding: 15px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
 h2 {
   color: #163b61;
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px; /* Reduced from 30px */
+  font-size: 1.5rem; /* Added font size control */
+}
+@media (max-width: 480px) {
+  .container {
+    margin: 10px auto;
+    padding: 15px;
+  }
+  
+  form input {
+    padding: 10px;
+  }
 }
 
+/* ... rest of your CSS ... */
 .button-group {
   display: flex;
   justify-content: center;
@@ -82,7 +103,7 @@ form input {
 form button {
   width: 100%;
   padding: 12px;
-  background-color: #27ae60;
+  background-color: #050a07;
   color: white;
   border: none;
   border-radius: 6px;
